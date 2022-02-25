@@ -1,0 +1,12 @@
+[package]
+name = "fizz_ruzzt"
+version = "0.1.0"
+edition = "2021"
+description = "Simple FizzBuzz thingy"
+authors = ["MFGookey <MFGookey@users.noreply.github.com>"]
+license = "MIT"
+keywords = ["fizzbuzz"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
