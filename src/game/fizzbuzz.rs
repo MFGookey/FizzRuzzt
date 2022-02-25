@@ -1,17 +1,21 @@
 use std::fmt::Display;
 
-use num::{Unsigned, Integer, FromPrimitive};
+use num::{FromPrimitive, Integer, Unsigned};
 
 #[derive(PartialEq, Eq, Debug)]
-pub enum FizzBuzz<T> where T: Unsigned + Integer {
+pub enum FizzBuzz<T>
+where
+    T: Unsigned + Integer,
+{
     Fizz,
     Buzz,
     FizzBuzz,
     Number { x: T },
 }
 
-impl<T> Display for FizzBuzz<T> 
-where T : Unsigned + Integer + Display
+impl<T> Display for FizzBuzz<T>
+where
+    T: Unsigned + Integer + Display,
 {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match &self {
@@ -24,16 +28,18 @@ where T : Unsigned + Integer + Display
 }
 
 impl<T> From<T> for FizzBuzz<T>
-where T : Unsigned + Integer + FromPrimitive + Copy {
+where
+    T: Unsigned + Integer + FromPrimitive + Copy,
+{
     fn from(i: T) -> Self {
         if i % T::from_u32(15).unwrap() == T::zero() {
-          FizzBuzz::FizzBuzz
+            FizzBuzz::FizzBuzz
         } else if i % T::from_u32(5).unwrap() == T::zero() {
-          FizzBuzz::Buzz
+            FizzBuzz::Buzz
         } else if i % T::from_u32(3).unwrap() == T::zero() {
-          FizzBuzz::Fizz
+            FizzBuzz::Fizz
         } else {
-          FizzBuzz::Number { x: i }
+            FizzBuzz::Number { x: i }
         }
     }
 }
@@ -64,7 +70,7 @@ mod test {
 
     #[test]
     fn display_1() {
-        assert_eq!("1", FizzBuzz::Number { x: 1 as u32  }.to_string())
+        assert_eq!("1", FizzBuzz::Number { x: 1 as u32 }.to_string())
     }
 
     #[test]
